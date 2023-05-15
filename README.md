@@ -15,7 +15,7 @@ Instructions for setting up AutoPkg on local machines, including a few scripts t
 
 ## Install AutoPkg
 
-First, find the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest) or by running the command line command: `curl -s https://api.github.com/repos/autopkg/autopkg/releases/latest | grep "browser_download_url"`
+First, find the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest) or by running the Terminal command: `curl -s https://api.github.com/repos/autopkg/autopkg/releases/latest | grep "browser_download_url"`
 
 Next, download that package, either from the link in a web browser or using `curl` on the Terminal command line: 
 `curl -LO https://github.com/autopkg/autopkg/releases/download/v2.7.2/autopkg-2.7.2.pkg`
