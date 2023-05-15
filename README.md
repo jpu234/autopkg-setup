@@ -15,11 +15,12 @@ Instructions for setting up AutoPkg on local machines, including a few scripts t
 
 ## Install AutoPkg
 
-First, download the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest).
+First, find the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest).
 
 Next, download that package, either from the link in a web browser or using `curl` on the Terminal command line: 
 `curl -LO https://github.com/autopkg/autopkg/releases/download/v2.7.2/autopkg-2.7.2.pkg`
-(substituting the latest link in)
+(substituting the latest link in).
+
 `curl` note: `-L` allows it to follow redirects, `-O` says to save the package with the same name as the download
 
 Finally, install that package, either by double clicking the file from the browser or with the following command:
@@ -39,12 +40,31 @@ To verify the program is working: `git -v` or `/usr/bin/git -v`
 
 ## Add AutoPkg Recipes
 
-Run the commands in the [[add-recipes.sh]] script. You can verify the recipes are all installed by running the `autopkg list-repos` or `/usr/local/bin/autopkg list-repos` command
+Run the commands in the `add-recipes.sh` script. You can verify the recipes are all installed by running the `autopkg list-repos` or `/usr/local/bin/autopkg list-repos` command.
 
 ## Make Recipe Overrides
 
+Run the commands in the `make-override.sh` script. You can verify the recipes are all installed by checking the `~/Library/AutoPkg/RecipeOverrides` directory.
+
 ## Set Up Server Credentials
+
+Run the following commands, substituting your Jamf Server URL for `$url`, your account for `$account`, and your password for `$password`:
+
+`/usr/bin/defaults write ~/Library/Preferences/com.github.autopkg.plist JSS_URL "$url"`
+
+`/usr/bin/defaults write ~/Library/Preferences/com.github.autopkg.plist API_USERNAME "$account"`
+
+`/usr/bin/defaults write ~/Library/Preferences/com.github.autopkg.plist API_PASSWORD "$password"`
+
+Note: the `history -p` command (in `zsh`) or `history -c` command (in `bash`) will clear your command line history and the `clear` command will clear your terminal window (so no one sees what you typed)
 
 ## Set Up Profile
 
+This is an optional step if you intend to use this machine to regularly run AutoPkg. It lets you launch the Terminal window and type `apd` to initiate running all the AutoPkg recipes. 
+
+Paste the contents of the `profile.sh` script into a file called `.zprofile` (`zsh`) or `.profile` (`bash`) in the user home directory.
+
 ## Test
+
+Test one of the recipes with something like: `autopkg run ~/Library/AutoPkg/RecipeOverrides/BBEdit.jamf-upload.recipe`
+
