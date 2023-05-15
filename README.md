@@ -15,7 +15,7 @@ Instructions for setting up AutoPkg on local machines, including a few scripts t
 
 ## Install AutoPkg
 
-First, find the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest).
+First, find the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest) or by running the command line command: `curl -s https://api.github.com/repos/autopkg/autopkg/releases/latest | grep "browser_download_url"`
 
 Next, download that package, either from the link in a web browser or using `curl` on the Terminal command line: 
 `curl -LO https://github.com/autopkg/autopkg/releases/download/v2.7.2/autopkg-2.7.2.pkg`
@@ -32,8 +32,8 @@ To verify the program is working: `autopkg version` or `/usr/local/bin/autopkg v
 
 To install `git`, you need to install the Xcode Command Line Tools from Apple. There are three main ways to do this:
 
-1. Download the Xcode Command Line Tools from Apple Developer and run the package. You'll need a free Apple Developer account.
-2. Login to the local computer and run the following on the command line: `xcode-select --install` or `/usr/bin/xcode-select --install` (note: the process opens a window on the console, so you need to be logged in)
+1. Login to the local computer and run the following on the command line: `xcode-select --install` or `/usr/bin/xcode-select --install` (note: the process opens a window on the console, so you need to be logged in)
+2. Download the Xcode Command Line Tools from Apple Developer and run the package. You'll need a free Apple Developer account.
 3. We have a Jamf Policy set up to do it that you can trigger running the following command: `sudo jamf policy -trigger xcodedev`
 
 To verify the program is working: `git -v` or `/usr/bin/git -v`
@@ -67,4 +67,3 @@ Paste the contents of the `profile.sh` script into a file called `.zprofile` (`z
 ## Test
 
 Test one of the recipes with something like: `autopkg run ~/Library/AutoPkg/RecipeOverrides/BBEdit.jamf-upload.recipe`
-
