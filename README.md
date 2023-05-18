@@ -36,7 +36,7 @@ To install `git`, you need to install the Xcode Command Line Tools from Apple. T
 
 1. Login to the local computer and run the following on the command line: `xcode-select --install` or `/usr/bin/xcode-select --install` (note: the process opens a window on the console, so you need to be logged in)
 2. Download the Xcode Command Line Tools from Apple Developer and run the package. You'll need a free Apple Developer account.
-3. We have a Jamf Policy set up to do it that you can trigger running the following command: `sudo jamf policy -trigger xcodedev`
+3. We have a Jamf Policy set up to do it that you can trigger running the following command: `sudo jamf policy -trigger xcodedev`. To ensure that the package is up to date, run `sudo /usr/sbin/softwareupdate -aiR` to install available updates.
 
 To verify the program is working: `git -v` or `/usr/bin/git -v`
 
