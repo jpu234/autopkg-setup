@@ -15,6 +15,7 @@ autopkg make-override Privileges.jamf-upload
 autopkg make-override SigniantApp.jamf-upload
 autopkg make-override Skype.jamf-upload
 autopkg make-override VLC.jamf-upload
+autopkg make-override VisualStudioCode.jamf-upload
 autopkg make-override VueScan.jamf-upload
 autopkg make-override Zoom.jamf-upload
 
