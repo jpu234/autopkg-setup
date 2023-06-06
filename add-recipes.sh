@@ -9,6 +9,7 @@ autopkg repo-add hjuutilainen-recipes
 autopkg repo-add homebysix-recipes
 autopkg repo-add jleggat-recipes
 autopkg repo-add jps3-recipes
+autopkg repo-add killahquam-recipes
 autopkg repo-add recipes
 autopkg repo-add rtrouton-recipes
 autopkg repo-add scriptingosx-recipes
