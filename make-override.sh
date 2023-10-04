@@ -1,6 +1,7 @@
 #!/bin/sh
 
 ## Make Overrides to the scripts you want
+autopkg make-override AutoPkg.jamf-upload
 autopkg make-override BBEdit.jamf-upload
 autopkg make-override Blender.jamf-upload
 autopkg make-override EndNote20.jamf-upload
