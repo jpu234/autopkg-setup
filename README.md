@@ -28,6 +28,8 @@ Next, download that package, either from the link in a web browser or using `cur
 Finally, install that package, either by double clicking the file from the browser or with the following command:
 `sudo installer -pkg autopkg-2.7.2.pkg -target /`
 
+Alternately, we have a policy to download the latest AutoPkg from the Jamf server. To use that, enter the command: `sudo jamf policy -id 13019`
+
 To verify the program is working: `autopkg version` or `/usr/local/bin/autopkg version`
 
 ## Install `git`
