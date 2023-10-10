@@ -4,7 +4,7 @@
 autopkg make-override AutoPkg.jamf-upload
 autopkg make-override BBEdit.jamf-upload
 autopkg make-override Blender.jamf-upload
-autopkg make-override EndNote20.jamf-upload
+autopkg make-override EndNote21.jamf-upload
 autopkg make-override Fetch.jamf-upload
 autopkg make-override Firefox.jamf-upload
 autopkg make-override GoogleChrome.jamf-upload
