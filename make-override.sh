@@ -10,8 +10,9 @@ autopkg make-override Firefox.jamf-upload
 autopkg make-override GoogleChrome.jamf-upload
 autopkg make-override MicrosoftAutoUpdate.jamf-upload
 autopkg make-override MicrosoftDefenderATP.jamf-upload
+autopkg make-override MicrosoftOffice365BusinessProSuite.jamf-upload.recipe
 autopkg make-override MicrosoftOneDrive.jamf-upload
-autopkg make-override MicrosoftTeams.jamf-upload
+autopkg make-override MicrosoftTeamsForWorkOrSchool.jamf-upload.recipe
 autopkg make-override Privileges.jamf-upload
 autopkg make-override SigniantApp.jamf-upload
 autopkg make-override Skype.jamf-upload
