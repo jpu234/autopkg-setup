@@ -21,3 +21,4 @@ autopkg make-override VLC.jamf-upload
 autopkg make-override VisualStudioCode.jamf-upload
 autopkg make-override VueScan.jamf-upload
 autopkg make-override Zoom.jamf-upload
+autopkg make-override swiftDialog.jamf-upload
