@@ -8,7 +8,7 @@ autopkg() { /usr/local/bin/autopkg $@; }
 
 exit_with_error() { echo "$@" 1>&2; exit 1; }
 
-copy_profile() { cat "profile.sh" >> "~/.zprofile"; }
+copy_profile() { cat "profile.sh" >> ~/".zprofile"; }
 #### #### #### ./lib/01-debug.sh #### #### #### 
 ## debug
 #### #### #### #### #### #### #### #### #### #### 
@@ -21,14 +21,14 @@ debug() {
 	echo "${timestamp} [${scriptname}]:  $@" 1>&2
 }
 
-#### #### #### ./lib/02-autopkg-array.sh #### #### #### 
-## autopkg-array
+#### #### #### ./lib/02-autopkg_array.sh #### #### #### 
+## autopkg_array
 #### #### #### #### #### #### #### #### #### #### 
 # $@ = array of repos
 # debug function
 # autopkg function
-autopkg-array() {
-	debug "Starting autopkg-array function"
+autopkg_array() {
+	debug "Starting autopkg_array function"
 	local autopkg_action="$1" && shift
 	local arr=("$@")
 	debug "Got array (${arr[*]})"
@@ -41,31 +41,41 @@ autopkg-array() {
 	done
 }
 
-#### #### #### ./lib/03-get-repos.sh #### #### #### 
-## get-repos
+#### #### #### ./lib/03-get_repos.sh #### #### #### 
+## get_repos
 #### #### #### #### #### #### #### #### #### #### 
 # $@ = array of repos
-# autopkg-array function
-get-repos() {
+# autopkg_array function
+get_repos() {
 	local arr=("$@")
-	autopkg-array "repo-add" "${arr[@]}" 
+	autopkg_array "repo-add" "${arr[@]}" 
 }
 
-#### #### #### ./lib/04-make-override.sh #### #### #### 
-## make-override
+#### #### #### ./lib/04-make_override.sh #### #### #### 
+## make_override
 #### #### #### #### #### #### #### #### #### #### 
 # $@ = array of recipes
-# autopkg-array function
-make-override() {
+# autopkg_array function
+make_override() {
 	local arr=("$@")
-	autopkg-array "make-override" "${arr[@]}" 
+	autopkg_array "make-override" "${arr[@]}" 
 }
 
 #### #### #### ./lib/99-main.sh #### #### #### 
 main() {
+	echo "Checking dependencies"
+	if ! git -v &> /dev/null; then 
+		echo "Please install git"
+		exit 1
+	fi
+	if ! autopkg version &> /dev/null; then
+		echo "Please install autopkg"
+		exit 1
+	fi
+
 	echo "Setting up autopkg"
-	get-repos "${repos[@]}"
-	make-override "${overrides[@]}"
+	get_repos "${repos[@]}"
+	make_override "${overrides[@]}"
 	copy_profile
 	echo "Done!"
 }

@@ -1,10 +1,10 @@
-## autopkg-array
+## autopkg_array
 #### #### #### #### #### #### #### #### #### #### 
 # $@ = array of repos
 # debug function
 # autopkg function
-autopkg-array() {
-	debug "Starting autopkg-array function"
+autopkg_array() {
+	debug "Starting autopkg_array function"
 	local autopkg_action="$1" && shift
 	local arr=("$@")
 	debug "Got array (${arr[*]})"
