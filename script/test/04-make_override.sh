@@ -11,7 +11,7 @@ autopkg() { echo -n "$@"; }
 input_array=("one" "two three" "four")
 expect_result \
 	"Basic make_override" \
-	"make-override one &> /dev/nullmake-override two three &> /dev/nullmake-override four &> /dev/null" \
+	"Processed 3 items" \
 	make_override "${input_array[@]}"
 
 

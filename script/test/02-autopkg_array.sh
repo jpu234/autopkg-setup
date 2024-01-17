@@ -10,7 +10,7 @@ autopkg() { echo -n "a:$@ "; }
 input_array=("one" "two three" "four")
 expect_result \
 	"Basic autopkg_array" \
-	"a:cmd one &> /dev/null a:cmd two three &> /dev/null a:cmd four &> /dev/null " \
+	"Processed 3 items" \
 	autopkg_array "cmd" "${input_array[@]}"
 
 expect_succeed "Function autopkg_array" autopkg_array 'one' 'two three' 'four'

@@ -8,10 +8,10 @@ autopkg() { echo -n "$@"; }
 
 # tests
 
-input_array=("one" "two three" "four")
+input_array=("one" "two three" "four" "five")
 expect_result \
 	"Basic get_repos" \
-	"repo-add one &> /dev/nullrepo-add two three &> /dev/nullrepo-add four &> /dev/null" \
+	"Processed 4 items" \
 	get_repos "${input_array[@]}"
 
 

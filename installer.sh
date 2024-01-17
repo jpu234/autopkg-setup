@@ -34,11 +34,12 @@ autopkg_array() {
 	debug "Got array (${arr[*]})"
 	for r in "${arr[@]}"; do
 		debug "Loading repo ${r}"
-		if ! autopkg "${autopkg_action} ${r} &> /dev/null"; then
+		if ! autopkg "${autopkg_action}" "${r}" &> /dev/null; then
 			echo "Unable to run action ${autopkg_action} on ${r}" 1>&2
 			return 1
 		fi
 	done
+	echo "Processed ${#arr[@]} items"
 }
 
 #### #### #### ./lib/03-get_repos.sh #### #### #### 
@@ -74,8 +75,14 @@ main() {
 	fi
 
 	echo "Setting up autopkg"
+	echo
+	echo "Loading repositories"
 	get_repos "${repos[@]}"
+	echo
+	echo "Creating overrides"
 	make_override "${overrides[@]}"
+	echo
+	echo "Copying profile"
 	copy_profile
 	echo "Done!"
 }

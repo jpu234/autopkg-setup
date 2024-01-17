@@ -10,8 +10,14 @@ main() {
 	fi
 
 	echo "Setting up autopkg"
+	echo
+	echo "Loading repositories"
 	get_repos "${repos[@]}"
+	echo
+	echo "Creating overrides"
 	make_override "${overrides[@]}"
+	echo
+	echo "Copying profile"
 	copy_profile
 	echo "Done!"
 }
