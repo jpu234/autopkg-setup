@@ -2,6 +2,7 @@
 
 repos=(
 	"brianwells-recipes"
+	"grahampugh/jamf-upload"
 	"grahampugh-recipes"
 	"hansen-m-recipes"
 	"hjuutilainen-recipes"
