@@ -16,7 +16,7 @@ expect_fail \
 
 expect_succeed \
 	"check url_validator for http" \
-	url_validator http://someserver.com
+	url_validator "http://someserver.com"
 	
 ## check strip_slash for url ending with a slash
 result=$(strip_slash "https://test_server.com/")
