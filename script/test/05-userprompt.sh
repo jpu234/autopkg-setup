@@ -42,10 +42,10 @@ expect_equal "Check write values for username/password" \
 results=""
 expect_succeed \
 	"Check client id/secret succeess" \
-	user_prompt "https://test_server.com" "c" "" "" "test client id" "test client secret"
+	user_prompt "https://test_server.com" "a" "" "" "test client id" "test client secret"
 
 results=""
-user_prompt "https://test_server.com" "c" "" "" "test client id" "test client secret"
+user_prompt "https://test_server.com" "a" "" "" "test client id" "test client secret"
 expect_equal "Check write values for client id/secret" "${results}" \
 	"defaults write JSS_URL https://test_server.com\ndefaults write CLIENT_ID test client id\ndefaults write CLIENT_SECRET test client secret\n"
 

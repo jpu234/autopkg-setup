@@ -34,10 +34,10 @@ user_prompt() {
 	done
 	
 	if [ -z "$api_mode" ]; then
-		read -r -p "Enter 'u' for username/password or press enter for client id/secret: " api_mode
+		read -r -p "Enter 'a' for client id/secret or press enter for username/password: " api_mode
 	fi
 	
-	if [ "$api_mode" == "u" ]; then
+	if [ "$api_mode" != "a" ]; then
 		while [ -z "${API_USERNAME}" ]; do
 			read -r -p "Please enter the Jamf Pro server username: " API_USERNAME
 		done	
