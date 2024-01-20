@@ -97,7 +97,7 @@ user_prompt() {
 	local CLIENT_SECRET="$6"
 	while [ -z "${JSS_URL}" ]; do
 		read -r -p "Please enter the URL to the Jamf Pro server (starting with https): " servername
-		if !url_validator "$JSS_URL"; then JSS_URL=""; fi
+		if ! url_validator "$JSS_URL"; then JSS_URL=""; fi
 		# strip the trailing slash if present
 		JSS_URL=$(strip_slash "$JSS_URL")
 	done
