@@ -4,7 +4,7 @@ Instructions for setting up AutoPkg on local machines, including a few scripts t
 
 # Steps to install
 
-[[#Setup]]
+[Setup](#setup)
 
 Script Installation
 
