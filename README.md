@@ -1,9 +1,26 @@
 # autopkg-setup
 
-Instructions for setting up AutoPkg on local machines, including a few scripts that we can keep up to date here.
+Instructions for setting up AutoPkg on local machines, including a few scripts that we can keep up to date here. They have been updated in 2024 with an added script.
 
 # Steps to install
-(details on each below)
+
+[[#Setup]]
+
+Script Installation
+
+Installation with Scripts
+
+Manual Installation
+
+## Setup
+
+For any method of installation, start by installing Git and AutoPkg.
+
+### Installing git
+
+`git` is part of 
+
+
 
 1. Install AutoPkg
 2. Install `git`
