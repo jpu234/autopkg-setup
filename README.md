@@ -6,31 +6,29 @@ Instructions for setting up AutoPkg on local machines, including a few scripts t
 
 [Setup](#setup)
 
-Script Installation
+[Script Installation](#running-the-script)
 
-Installation with Scripts
+[Installation with Scripts](#installation-with-scripts)
 
-Manual Installation
+[Manual Installation](#manual-installation)
+
+[Testing the Installation](#test)
 
 ## Setup
 
-For any method of installation, start by installing Git and AutoPkg.
+For any method of installation, start by installing Git and AutoPkg and creating a copy of this repo.
 
 ### Installing git
 
-`git` is part of 
+`git` is part of the Xcode Command Line Tools from Apple. There are three main ways to do this:
 
+- Login to the local computer and run the following on the command line: `xcode-select --install` (note: the process opens a window on the console, so you need to be logged into the console)
+- Download the Xcode Command Line Tools from Apple Developer and run the package. You'll need a free Apple Developer account.
+- We have a Jamf Policy set up on Draugr to do it that you can trigger running the following command: `sudo jamf policy -trigger xcodedev`. To ensure that the package is up to date, run `sudo softwareupdate -aiR` to install available updates.
 
+To verify the program is working: `git -v` or `/usr/bin/git -v`
 
-1. Install AutoPkg
-2. Install `git`
-3. Add AutoPkg Recipes
-4. Make Recipe Overrides
-5. Set Up Server Credentials
-6. Set Up Profile (optional)
-7. Test
-
-## Install AutoPkg
+### Install AutoPkg
 
 First, find the latest version of AutoPkg. You can use its [GitHub repo](https://github.com/autopkg/autopkg/releases/latest) or by running the Terminal command: 
 
@@ -45,46 +43,62 @@ Next, download that package, either from the link in a web browser or using `cur
 Finally, install that package, either by double clicking the file from the browser or with the following command:
 `sudo installer -pkg autopkg-2.7.2.pkg -target /`
 
-Alternately, we have a policy to download the latest AutoPkg from the Jamf server. To use that, enter the command: `sudo jamf policy -id 13019`
+Alternately, we have a policy to download the latest AutoPkg from the Draugr Jamf server. To use that, enter the command: `sudo jamf policy -id 13019`
 
-To verify the program is working: `autopkg version` or `/usr/local/bin/autopkg version`
+To verify the program is working: `autopkg version`
 
-## Install `git`
+### Clone This Repo
 
-To install `git`, you need to install the Xcode Command Line Tools from Apple. There are three main ways to do this:
+The easiest way to do this is to open a Terminal Session and type the command: `git clone https://github.com/jchutc0/autopkg-setup.git`. That will create a local copy of all files in this archive on your computer in the `autopkg-setup` directory
 
-1. Login to the local computer and run the following on the command line: `xcode-select --install` or `/usr/bin/xcode-select --install` (note: the process opens a window on the console, so you need to be logged in)
-2. Download the Xcode Command Line Tools from Apple Developer and run the package. You'll need a free Apple Developer account.
-3. We have a Jamf Policy set up to do it that you can trigger running the following command: `sudo jamf policy -trigger xcodedev`. To ensure that the package is up to date, run `sudo /usr/sbin/softwareupdate -aiR` to install available updates.
+### Set Up Repositories and Repos
 
-To verify the program is working: `git -v` or `/usr/bin/git -v`
+Look at the contents of the `sources.sh` file to see the AutoPkg recipes and repos that I use and either use those or update them for your own needs (unless you do the manual setup). 
 
-## Add AutoPkg Recipes
+Once the setup is complete, choose to [run the installer script](#running-the-script), install with [individual scripts](#installation-with-scripts), or set things up [manually](#manual-installation).
 
-Run the commands in the `add-recipes.sh` script. You can verify the recipes are all installed by running the `autopkg list-repos` or `/usr/local/bin/autopkg list-repos` command.
+## Running the Script
 
-## Make Recipe Overrides
+The script will do the rest of the setup for you. If it works properly, it should be the easiest way to do things. In the Terminal session where you cloned this repo, change directory into the repo `cd autopkg-setup`. Then run the command `./installer.sh`.
 
-Run the commands in the `make-override.sh` script. You can verify the recipes are all installed by checking the `~/Library/AutoPkg/RecipeOverrides` directory.
+The script:
+- Verifies `git` and `autopkg` are installed
+- Prompts you for your server API credentials and stores those in the AutoPkg defaults file
+- Uses `autopkg` to pull down any repositories defined in the `sources.sh` file
+- Uses `autopkg` to make overrides of the AutoPkg recipes defined in the `sources.sh` file
+- Sets up a `.zprofile` file to make running AutoPkg easier
 
-## Set Up Server Credentials
+If the script runs successfully, [test the installation](#test)
 
-Run the following commands, substituting your Jamf Server URL for `$url`, your account for `$account`, and your password for `$password`:
+## Installation with Scripts
 
-`/usr/bin/defaults write ~/Library/Preferences/com.github.autopkg.plist JSS_URL "$url"`
+For more control of the installation process, you can bypass some of the automation. To do this process:
+- Set up the AutoPkg defaults file
+	- Set the Jamf server URL with: `defaults write ~/Library/Preferences/com.github.autopkg.plist JSS_URL "$url"` (substituting your Jamf URL for `$url`)
+	- Set the Jamf API username with: `defaults write ~/Library/Preferences/com.github.autopkg.plist API_USERNAME "$account"` (substituting your API username for `$account`)
+	- Set the Jamf API password with: `defaults write ~/Library/Preferences/com.github.autopkg.plist API_PASSWORD "$password"` (substituting your API password for `$password`); Note: the `history -p` command (in `zsh`) or `history -c` command (in `bash`) will clear your command line history and the `clear` command will clear your terminal window (so no one sees the password you typed)
+- Run the script `add-recipes.sh` script (`source add-recipes.sh`) to pull down any repositories defined in the `sources.sh` file 
+- Run the script `make-override.sh` script (`source make-override.sh`) to make overrides of the AutoPkg recipes defined in the `sources.sh` file 
+- (Optional) Paste the contents of the `profile.sh` script into a file called `.zprofile` (if you use `zsh`) or `.profile` (if you use `bash`) in the user home directory to set up a profile
 
-`/usr/bin/defaults write ~/Library/Preferences/com.github.autopkg.plist API_USERNAME "$account"`
+If these steps are successful, [test the installation](#test)
 
-`/usr/bin/defaults write ~/Library/Preferences/com.github.autopkg.plist API_PASSWORD "$password"`
+## Manual Installation
+- Set up the AutoPkg defaults file
+	- Set the Jamf server URL with: `defaults write ~/Library/Preferences/com.github.autopkg.plist JSS_URL "$url"` (substituting your Jamf URL for `$url`)
+	- Set the Jamf API username with: `defaults write ~/Library/Preferences/com.github.autopkg.plist API_USERNAME "$account"` (substituting your API username for `$account`)
+	- Set the Jamf API password with: `defaults write ~/Library/Preferences/com.github.autopkg.plist API_PASSWORD "$password"` (substituting your API password for `$password`); Note: the `history -p` command (in `zsh`) or `history -c` command (in `bash`) will clear your command line history and the `clear` command will clear your terminal window (so no one sees the password you typed)
+- Run the script `add-recipes.sh` script (`source add-recipes.sh`) to pull down any repositories defined in the `sources.sh` file 
+- Run the script `make-override.sh` script (`source make-override.sh`) to make overrides of the AutoPkg recipes defined in the `sources.sh` file 
+- (Optional) Paste the contents of the `profile.sh` script into a file called `.zprofile` (if you use `zsh`) or `.profile` (if you use `bash`) in the user home directory to set up a profile
 
-Note: the `history -p` command (in `zsh`) or `history -c` command (in `bash`) will clear your command line history and the `clear` command will clear your terminal window (so no one sees what you typed)
-
-## Set Up Profile
-
-This is an optional step if you intend to use this machine to regularly run AutoPkg. It lets you launch the Terminal window and type `apd` to initiate running all the AutoPkg recipes. 
-
-Paste the contents of the `profile.sh` script into a file called `.zprofile` (`zsh`) or `.profile` (`bash`) in the user home directory.
+If these steps are successful, [test the installation](#test)
 
 ## Test
 
-Test one of the recipes with something like: `autopkg run ~/Library/AutoPkg/RecipeOverrides/BBEdit.jamf-upload.recipe`
+To verify that things work:
+- Use the command `defaults read ~/Library/Preferences/com.github.autopkg.plist` and make sure that file shows your API credentials and server URL correctly (the `clear` command will clear your screen so your password doesn't just keep showing)
+- Verify the recipes are all installed by running the `autopkg list-repos` command. You should see all the repos you added.
+- Verify the overrides are present with `ls ~/Library/AutoPkg/RecipeOverrides`
+- Verify the profile is written correctly by opening a new Terminal session
+- Test one of the recipes with something like: `autopkg run ~/Library/AutoPkg/RecipeOverrides/BBEdit.jamf-upload.recipe`
