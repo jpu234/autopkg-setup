@@ -26,7 +26,7 @@ For any method of installation, start by installing Git and AutoPkg and creating
 - Download the Xcode Command Line Tools from Apple Developer and run the package. You'll need a free Apple Developer account.
 - We have a Jamf Policy set up on Draugr to do it that you can trigger running the following command: `sudo jamf policy -trigger xcodedev`. To ensure that the package is up to date, run `sudo softwareupdate -aiR` to install available updates.
 
-To verify the program is working: `git -v` or `/usr/bin/git -v`
+To verify the program is working: `git -v`
 
 ### Install AutoPkg
 
@@ -88,9 +88,9 @@ If these steps are successful, [test the installation](#test)
 	- Set the Jamf server URL with: `defaults write ~/Library/Preferences/com.github.autopkg.plist JSS_URL "$url"` (substituting your Jamf URL for `$url`)
 	- Set the Jamf API username with: `defaults write ~/Library/Preferences/com.github.autopkg.plist API_USERNAME "$account"` (substituting your API username for `$account`)
 	- Set the Jamf API password with: `defaults write ~/Library/Preferences/com.github.autopkg.plist API_PASSWORD "$password"` (substituting your API password for `$password`); Note: the `history -p` command (in `zsh`) or `history -c` command (in `bash`) will clear your command line history and the `clear` command will clear your terminal window (so no one sees the password you typed)
-- Run the script `add-recipes.sh` script (`source add-recipes.sh`) to pull down any repositories defined in the `sources.sh` file 
-- Run the script `make-override.sh` script (`source make-override.sh`) to make overrides of the AutoPkg recipes defined in the `sources.sh` file 
-- (Optional) Paste the contents of the `profile.sh` script into a file called `.zprofile` (if you use `zsh`) or `.profile` (if you use `bash`) in the user home directory to set up a profile
+- Pull down any desired Git repositories through AutoPkg with the command `autopkg add <repo-name>` (with your own repo for repo-name). Repeat for each repo.
+- Create override files through AutoPkg with the command `autopkg make-override <recipe>` (with your own recipe). These recipes need to be in the repositories you downloaded above. Repeat for each recipe.
+- (Optional) Add commands/aliases to your the `.zprofile` (if you use `zsh`) or `.profile` (if you use `bash`) file in your user home directory
 
 If these steps are successful, [test the installation](#test)
 
