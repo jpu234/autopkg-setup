@@ -12,7 +12,7 @@ repos=(
 	"recipes"
 	"rtrouton-recipes"
 	"scriptingosx-recipes"
-	"https://github.com/jchutc0/autopkg-uploaders"
+	"https://github.com/jpu234/autopkg-uploaders"
 )
 
 overrides=(
