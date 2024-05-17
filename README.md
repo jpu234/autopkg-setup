@@ -49,7 +49,7 @@ To verify the program is working: `autopkg version`
 
 ### Clone This Repo
 
-The easiest way to do this is to open a Terminal Session and type the command: `git clone https://github.com/jchutc0/autopkg-setup.git`. That will create a local copy of all files in this archive on your computer in the `autopkg-setup` directory
+The easiest way to do this is to open a Terminal Session and type the command: `git clone https://github.com/jpu234/autopkg-setup.git`. That will create a local copy of all files in this archive on your computer in the `autopkg-setup` directory
 
 ### Set Up Repositories and Repos
 
